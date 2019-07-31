@@ -3,11 +3,11 @@
 //  Tarification
 //
 //  Created by Augustin Debureaux on 30/07/2019.
-//  Copyright © 2019 Augustin Debureaux. All rights reserved.
+//  Copyright ï¿½ 2019 Augustin Debureaux. All rights reserved.
 //
 
-# include <stdio.h>
-# include <stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 double tarif(int zoneMessagerie, int poids)
 {
@@ -73,7 +73,7 @@ double tarif(int zoneMessagerie, int poids)
     {
         tranchePoids = 14;
     }
-    else if (poids >= 500 && poids <= 100)
+    else if (poids >= 500 && poids <= 1000)
     {
         tranchePoids = 15;
     }
@@ -85,6 +85,7 @@ double tarif(int zoneMessagerie, int poids)
     // Recalibrage departement depart
     zoneMessagerie--;
 
+    double prixBase = 0, multiplier = 0;
     double table[12][16] = {
     { 11.87, 13.00, 14.10, 15.21, 16.32, 19.63, 22.92, 24.92, 26.95, 28.95, 30.97, 32.96, 32.96, 31.31, 29.76, 28.26 },
     { 19.88, 22.39, 24.91, 27.44, 29.96, 33.30, 36.66, 40.03, 43.38, 46.75, 50.11, 53.46, 53.46, 50.79, 48.24, 45.83 },
@@ -96,10 +97,18 @@ double tarif(int zoneMessagerie, int poids)
     { 27.76, 34.03, 40.29, 46.55, 52.83, 59.01, 65.20, 71.40, 77.60, 83.78, 89.97, 96.15, 96.15, 91.37, 86.79, 82.45 },
     { 27.95, 35.09, 42.23, 49.38, 56.52, 62.88, 69.23, 75.57, 81.91, 88.27, 94.63, 100.98, 100.98, 95.92, 91.13, 86.57 },
     { 28.10, 36.20, 44.29, 52.39, 60.48, 66.98, 73.49, 79.99, 86.51, 93.01, 99.53, 106.02, 106.02, 100.73, 95.68, 90.91 },
-    { 28.29, 37.24, 46.20, 55.14, 64.12, 70.85, 77.61, 84.33, 91.08, 97,83, 104.58, 111.33, 111.33, 105.76, 100.48, 95.46 },
+    { 28.29, 37.24, 46.20, 55.14, 64.12, 70.85, 77.61, 84.33, 91.08, 97.83, 104.58, 111.33, 111.33, 105.76, 100.48, 95.46 },
     { 28.46, 38.17, 47.89, 57.60, 67.30, 74.07, 80.85, 87.60, 94.38, 101.13, 107.91, 114.67, 114.67, 108.93, 103.48, 98.31 }
     };
+    prixBase = table[zoneMessagerie][tranchePoids];
+
+    
+    if (poids > 100 )
+    {
+        multiplier = poids / 100;
+        prixBase = prixBase * multiplier;
+    }
 
 
-    return table[zoneMessagerie][tranchePoids];
+    return prixBase;
 }
