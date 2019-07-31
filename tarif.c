@@ -9,11 +9,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-double tarif(int zoneMessagerie, int poids)
+double tarif(int zoneMessagerie, int poids, int mode)
 {
     int tranchePoids = 0;
+    double prixBase = 0, multiplier = 0;
+    // Recalibrage departement depart
+    zoneMessagerie--;
 
-     if (poids >= 0 && poids <= 4)
+    if (poids >= 0 && poids <= 4)
     {
         tranchePoids = 0;
     }
@@ -79,14 +82,10 @@ double tarif(int zoneMessagerie, int poids)
     }
     else
     {
-        printf("\nPoids incorrect.\n");
+        printf("Poids incorrect.\n");
     }
 
-    // Recalibrage departement depart
-    zoneMessagerie--;
-
-    double prixBase = 0, multiplier = 0;
-    double table[12][16] = {
+    double tableMessagerie[12][16] = {
     { 11.87, 13.00, 14.10, 15.21, 16.32, 19.63, 22.92, 24.92, 26.95, 28.95, 30.97, 32.96, 32.96, 31.31, 29.76, 28.26 },
     { 19.88, 22.39, 24.91, 27.44, 29.96, 33.30, 36.66, 40.03, 43.38, 46.75, 50.11, 53.46, 53.46, 50.79, 48.24, 45.83 },
     { 21.86, 25.39, 28.93, 32.45, 35.98, 40.62, 45.25, 49.90, 54.52, 59.16, 63.78, 68.42, 68.42, 65.00, 61.75, 58.67 },
@@ -100,7 +99,10 @@ double tarif(int zoneMessagerie, int poids)
     { 28.29, 37.24, 46.20, 55.14, 64.12, 70.85, 77.61, 84.33, 91.08, 97.83, 104.58, 111.33, 111.33, 105.76, 100.48, 95.46 },
     { 28.46, 38.17, 47.89, 57.60, 67.30, 74.07, 80.85, 87.60, 94.38, 101.13, 107.91, 114.67, 114.67, 108.93, 103.48, 98.31 }
     };
-    prixBase = table[zoneMessagerie][tranchePoids];
+    
+    
+    
+    prixBase = tableMessagerie[zoneMessagerie][tranchePoids];
 
     
     if (poids > 100 )

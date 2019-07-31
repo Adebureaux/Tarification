@@ -13,8 +13,8 @@
 
 int main(int argc, const char * argv[])
 {
-    // A faire : Corse
-
+    // Definition du mode
+    int mode = 1;
     // Definition de la zone
     int arr = 0, dep = 0, zoneMessagerie = 0;
     // Definition du poids
@@ -23,24 +23,41 @@ int main(int argc, const char * argv[])
     const double tgo = 1.13;
     double prixBase = 0, prixReel = 2.99, prixMarge = 0;
 
-    printf("Departement de depart : ");
+    printf("-------------------------------------------------------\n");
+    printf("----            Calculateur de prix                ----\n");
+    printf("----                   Geodis                      ----\n");
+    printf("----                                               ----\n");
+    printf("----     Tapez 1 pour un tarif en messagerie       ----\n");
+    printf("----  Tapez 0 pour un tarif en messagerie express  ----\n");
+    printf("-------------------------------------------------------\n");
+    scanf("%d", &mode);
+    
+    printf("\nDepartement de depart : ");
     scanf("%d", &dep);
     printf("Departement de d'arrive : ");
     scanf("%d", &arr);
-    zoneMessagerie = zone(arr, dep);
+    zoneMessagerie = zone(arr, dep, mode);
 
     printf("Poids du colis : ");
     scanf("%d", &poids);
-    prixBase = tarif(zoneMessagerie, poids);
+    prixBase = tarif(zoneMessagerie, poids, mode);
 
     prixReel = (prixBase + prixReel) * tgo;
-    printf("\n\nLe tarif d'achat de %.2lf Euros\n", prixReel);
+    printf("\n\nTarif d'achat : %.2lf Euros\n", prixReel);
 
-    if (prixReel < 100)
+    if (prixReel < 50)
+    {
+        prixMarge = prixReel / 0.40;
+    }
+    else if (prixReel >= 50 && prixReel <= 99)
+    {
+        prixMarge = prixReel / 0.45;
+    }
+    else if (prixReel >= 100 && prixReel <= 149)
     {
         prixMarge = prixReel / 0.50;
     }
-    else if (prixReel >= 100 && prixReel <= 199)
+    else if (prixReel >= 150 && prixReel <= 199)
     {
         prixMarge = prixReel / 0.55;
     }
@@ -64,8 +81,8 @@ int main(int argc, const char * argv[])
     {
         prixMarge = prixReel / 0.80;
     }
-    
-    printf("Le tarif de vente de %.2lf Euros\n\n", prixMarge);
+
+    printf("Tarif de vente : %.2lf Euros\n\n", prixMarge);
 
     return 0;
 }
