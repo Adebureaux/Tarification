@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1564562444 source:c:\users\ouhabiter2\desktop\tarifs geodis\tarifs geodis\zone.c
+	<stdio.h>
+	<stdlib.h>
+
+1564564215 source:c:\users\ouhabiter2\desktop\tarifs geodis\tarifs geodis\main.c
+	<stdio.h>
+	<stdlib.h>
+	"zone.h"
+
+1564560128 c:\users\ouhabiter2\desktop\tarifs geodis\tarifs geodis\zone.h
+

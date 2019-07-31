@@ -1,5 +1,5 @@
 //
-//  Zones.h
+//  zone.h
 //  Tarification
 //
 //  Created by Augustin Debureaux on 30/07/2019.
@@ -9,6 +9,6 @@
 #ifndef zone_h
 #define zone_h
 
-int zone(int, int);
+int zone(int arr, int dep);
 
-#endif /* Zones_h */
+#endif /* zone_h */
