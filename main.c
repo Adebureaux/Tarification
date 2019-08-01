@@ -50,9 +50,19 @@ do
 
     printf("Poids total : ");
     scanf("%d", &poids);
-    prixBase = tarif(zoneMessagerie, poids, mode);
 
+    if (mode)
+    {
+    prixBase = tarif(zoneMessagerie, poids, mode);
     prixReel = (prixBase + prixReel) * tgo;
+    }
+    else
+    {
+    prixBase = tarif(zoneMessagerie, poids, mode);
+    prixReel = (prixBase + prixReel) * tgo;
+    prixReel = prixReel + 9;
+    }
+
     printf("\n\nTarif d'achat : %.2lf Euros\n", prixReel);
 
     if (prixReel < 50)
@@ -96,6 +106,9 @@ do
 
     printf("Voulez-vous continuer ? 1 -> OUI 0 -> NON : ");
     scanf("%d", &run);
+    prixBase = 0;
+    prixReel = 2.99;
+    prixMarge = 0;
     printf("\n\n\n\n\n");
 } while (run);
 
