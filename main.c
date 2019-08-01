@@ -21,10 +21,10 @@ int main(int argc, const char * argv[])
     int poids = 0;
     //Definition du tarif
     const double tgo = 1.13;
-    double prixBase = 0, prixReel = 0, prixMarge = 0;
-
+    
 do
 {
+    double prixBase = 0, prixReel = 0, prixMarge = 0;
     printf("-------------------------------------------------------\n");
     printf("----            Calculateur de prix                ----\n");
     printf("----                   Geodis                      ----\n");
@@ -51,7 +51,7 @@ do
 
     printf("Poids total : ");
     scanf("%d", &poids);
-
+    
     if (mode)
     {
     prixBase = tarif(zoneMessagerie, poids, mode);
@@ -106,9 +106,6 @@ do
 
     printf("Voulez-vous continuer ? 1 -> OUI 0 -> NON : ");
     scanf("%d", &run);
-    prixBase = 0;
-    prixReel = 2.99;
-    prixMarge = 0;
     printf("\n\n\n\n\n");
 } while (run);
 
