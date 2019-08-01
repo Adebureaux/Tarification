@@ -21,7 +21,7 @@ int main(int argc, const char * argv[])
     int poids = 0;
     //Definition du tarif
     const double tgo = 1.13;
-    double prixBase = 0, prixReel = 2.99, prixMarge = 0;
+    double prixBase = 0, prixReel = 0, prixMarge = 0;
 
 do
 {
@@ -33,9 +33,10 @@ do
     printf("----  Tapez 0 pour un tarif en messagerie express  ----\n");
     printf("-------------------------------------------------------\n");
 
+    printf("\nMode de transport : ");
     scanf("%d", &mode);
     do {
-    printf("\nDepartement de depart : ");
+    printf("Departement de depart : ");
     scanf("%d", &dep);
     printf("Departement de d'arrive : ");
     scanf("%d", &arr);
@@ -54,13 +55,12 @@ do
     if (mode)
     {
     prixBase = tarif(zoneMessagerie, poids, mode);
-    prixReel = (prixBase + prixReel) * tgo;
+    prixReel = (prixBase * tgo) + 0.99 + 2;
     }
     else
     {
     prixBase = tarif(zoneMessagerie, poids, mode);
-    prixReel = (prixBase + prixReel) * tgo;
-    prixReel = prixReel + 9;
+    prixReel = (prixBase * tgo) + 0.99 + 2 + 9;
     }
 
     printf("\n\nTarif d'achat : %.2lf Euros\n", prixReel);
