@@ -14,7 +14,7 @@
 int main(int argc, const char * argv[])
 {
     // Definition du mode
-    int mode = 1;
+    int mode = 1, run = 1;
     // Definition de la zone
     int arr = 0, dep = 0, zoneMessagerie = 0;
     // Definition du poids
@@ -23,6 +23,8 @@ int main(int argc, const char * argv[])
     const double tgo = 1.13;
     double prixBase = 0, prixReel = 2.99, prixMarge = 0;
 
+do
+{
     printf("-------------------------------------------------------\n");
     printf("----            Calculateur de prix                ----\n");
     printf("----                   Geodis                      ----\n");
@@ -30,15 +32,23 @@ int main(int argc, const char * argv[])
     printf("----     Tapez 1 pour un tarif en messagerie       ----\n");
     printf("----  Tapez 0 pour un tarif en messagerie express  ----\n");
     printf("-------------------------------------------------------\n");
+
     scanf("%d", &mode);
-    
+    do {
     printf("\nDepartement de depart : ");
     scanf("%d", &dep);
     printf("Departement de d'arrive : ");
     scanf("%d", &arr);
+    if (arr == 20 || dep == 20)
+    {
+        printf("\nErreur : Enlevement ou livraison en corse\n");
+        printf("Merci de ressaisir\n");
+    }
+    } while (arr == 20 || dep == 20);
+
     zoneMessagerie = zone(arr, dep, mode);
 
-    printf("Poids du colis : ");
+    printf("Poids total : ");
     scanf("%d", &poids);
     prixBase = tarif(zoneMessagerie, poids, mode);
 
@@ -83,6 +93,11 @@ int main(int argc, const char * argv[])
     }
 
     printf("Tarif de vente : %.2lf Euros\n\n", prixMarge);
+
+    printf("Voulez-vous continuer ? 1 -> OUI 0 -> NON : ");
+    scanf("%d", &run);
+    printf("\n\n\n\n\n");
+} while (run);
 
     return 0;
 }
