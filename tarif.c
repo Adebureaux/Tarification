@@ -82,10 +82,6 @@ if (mode)
     {
         tranchePoids = 15;
     }
-    else
-    {
-        printf("Poids incorrect.\n");
-    }
 }
 else
 {
@@ -93,13 +89,13 @@ else
     {
         tranchePoids = 12;
     }
-    else
-    {
-        printf("Poids incorrect.\n");
-    }
 }
+    if (poids > 1000)
+    {
+        printf("Poids incorrect, veuilliez ressaisir.\n");
+    }
 
-    
+
     double tableMessagerie[12][16] = {
     { 11.87, 13.00, 14.10, 15.21, 16.32, 19.63, 22.92, 24.92, 26.95, 28.95, 30.97, 32.96, 32.96, 31.31, 29.76, 28.26 },
     { 19.88, 22.39, 24.91, 27.44, 29.96, 33.30, 36.66, 40.03, 43.38, 46.75, 50.11, 53.46, 53.46, 50.79, 48.24, 45.83 },
