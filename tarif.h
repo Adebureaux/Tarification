@@ -9,6 +9,6 @@
 #ifndef tarif_h
 #define tarif_h
 
-double tarif(int zoneMessagerie, int poids, int mode);
+double tarif(int zoneMessagerie, int poids, int mode, int corse);
 
 #endif /* tarif_h */

@@ -14,17 +14,19 @@
 int main(int argc, const char * argv[])
 {
     // Definition du mode
-    int mode = 1, run = 1;
+    int mode = 1, run = 1, corse = 0;
     // Definition de la zone
     int arr = 0, dep = 0, zoneMessagerie = 0;
     // Definition du poids
     int poids = 0;
     //Definition du tarif
     const double tgo = 1.13;
+    int div = 0;
+    double marge = 0, diviseurMarge = 0;
 
 do
 {
-    double prixBase = 0, prixReel = 0, prixMarge = 0;
+    double prixBase = 0, prixReel = 0, prixMarge = 0, prixTTC = 0;
     printf("-------------------------------------------------------\n");
     printf("----            Calculateur de prix                ----\n");
     printf("----                   Geodis                      ----\n");
@@ -40,34 +42,43 @@ do
     scanf("%d", &dep);
     printf("Departement de d'arrive : ");
     scanf("%d", &arr);
+    
+    if (dep == 20 || arr == 20)
+    {
+        corse = 1;
+    }
+    else
+    {
+        corse = 0;
+    }
 
     zoneMessagerie = zone(arr, dep, mode);
 
     printf("Poids total : ");
     scanf("%d", &poids);
+    
+    printf("Zone : %d", zoneMessagerie);
 
     if (mode)
     {
-    prixBase = tarif(zoneMessagerie, poids, mode);
+    prixBase = tarif(zoneMessagerie, poids, mode, corse);
     prixReel = (prixBase * tgo) + 0.99 + 2;
     }
     else
     {
-    prixBase = tarif(zoneMessagerie, poids, mode);
+    prixBase = tarif(zoneMessagerie, poids, mode, corse);
     prixReel = (prixBase * tgo) + 0.99 + 2 + 9;
     }
 
     printf("\n\nTarif d'achat : %.2lf Euros\n", prixReel);
 
     // Calcul du tarif avec la marge
-    double diviseurMarge;
-    double diviseur[30] = {0.40, 0.41, 0.42, 0.43, 0.44, 0.45, 0.46, 0.47, 0.48, 0.49, 0.50, 0.52, 0.54, 0.56, 0.58, 0.60, 0.62, 0.64, 0.66, 0.68, 0.70, 0.71, 0.72, 0.73, 0.74, 0.75, 0.76, 0.77, 0.78, 0.79, 0.80};
-    int div;
+    double diviseur[40] = { 0.30, 0.40, 0.45, 0.50, 0.51, 0.52, 0.53, 0.54, 0.55, 0.56, 0.57, 0.58, 0.59, 0.60, 0.61, 0.62, 0.63, 0.64, 0.65, 0.66, 0.67, 0.68, 0.69, 0.70, 0.71, 0.72, 0.73, 0.735, 0.740, 0.745, 0.750, 0.755, 0.760, 0.765, 0.770, 0.775, 0.780, 0.785, 0.790, 0.795 };
 
-    if (prixReel < 600)
+    if (prixReel < 500)
     {
-    div = prixReel / 20;
-    diviseurMarge = diviseur[div];
+        div = prixReel / 12.5;
+        diviseurMarge = diviseur[div];
     }
     else
     {
@@ -76,7 +87,14 @@ do
 
     prixMarge = prixReel / diviseurMarge;
 
-    printf("Tarif de vente : %.2lf Euros\n\n", prixMarge);
+    printf("Tarif de vente HT : %.2lf Euros\n", prixMarge);
+    
+    prixTTC = prixMarge * 1.2;
+    printf("Tarif de vente TTC : %.2lf Euros\n", prixTTC);
+    
+    // Affichage de la marge
+    marge = (1 - (diviseurMarge)) * 100;
+    printf("Marge : %.0lf%%\n\n", marge);
 
     printf("Voulez-vous continuer ? 1 -> OUI 0 -> NON : ");
     scanf("%d", &run);
