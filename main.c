@@ -21,7 +21,7 @@ int main(int argc, const char * argv[])
     int poids = 0;
     //Definition du tarif
     const double tgo = 1.13;
-    
+
 do
 {
     double prixBase = 0, prixReel = 0, prixMarge = 0;
@@ -35,23 +35,17 @@ do
 
     printf("\nMode de transport : ");
     scanf("%d", &mode);
-    do {
+
     printf("Departement de depart : ");
     scanf("%d", &dep);
     printf("Departement de d'arrive : ");
     scanf("%d", &arr);
-    if (arr == 20 || dep == 20)
-    {
-        printf("\nErreur : Enlevement ou livraison en corse\n");
-        printf("Merci de ressaisir\n");
-    }
-    } while (arr == 20 || dep == 20);
 
     zoneMessagerie = zone(arr, dep, mode);
 
     printf("Poids total : ");
     scanf("%d", &poids);
-    
+
     if (mode)
     {
     prixBase = tarif(zoneMessagerie, poids, mode);
@@ -65,42 +59,22 @@ do
 
     printf("\n\nTarif d'achat : %.2lf Euros\n", prixReel);
 
-    if (prixReel < 50)
+    // Calcul du tarif avec la marge
+    double diviseurMarge;
+    double diviseur[30] = {0.40, 0.41, 0.42, 0.43, 0.44, 0.45, 0.46, 0.47, 0.48, 0.49, 0.50, 0.52, 0.54, 0.56, 0.58, 0.60, 0.62, 0.64, 0.66, 0.68, 0.70, 0.71, 0.72, 0.73, 0.74, 0.75, 0.76, 0.77, 0.78, 0.79, 0.80};
+    int div;
+
+    if (prixReel < 600)
     {
-        prixMarge = prixReel / 0.40;
-    }
-    else if (prixReel >= 50 && prixReel <= 99)
-    {
-        prixMarge = prixReel / 0.45;
-    }
-    else if (prixReel >= 100 && prixReel <= 149)
-    {
-        prixMarge = prixReel / 0.50;
-    }
-    else if (prixReel >= 150 && prixReel <= 199)
-    {
-        prixMarge = prixReel / 0.55;
-    }
-    else if (prixReel >= 200  && prixReel <= 299)
-    {
-        prixMarge = prixReel / 0.60;
-    }
-    else if (prixReel >= 300  && prixReel <= 399)
-    {
-        prixMarge = prixReel / 0.65;
-    }
-    else if (prixReel >= 400  && prixReel <= 499)
-    {
-        prixMarge = prixReel / 0.70;
-    }
-    else if (prixReel >= 500  && prixReel <= 599)
-    {
-        prixMarge = prixReel / 0.75;
+    div = prixReel / 20;
+    diviseurMarge = diviseur[div];
     }
     else
     {
-        prixMarge = prixReel / 0.80;
+        diviseurMarge = 0.80;
     }
+
+    prixMarge = prixReel / diviseurMarge;
 
     printf("Tarif de vente : %.2lf Euros\n\n", prixMarge);
 
@@ -111,3 +85,4 @@ do
 
     return 0;
 }
+

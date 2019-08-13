@@ -130,11 +130,20 @@ else
         prixBase = tableMessagerieExpress[zoneMessagerie][tranchePoids];
     }
 
-    if (poids > 100 )
+    printf("Prix base : %lf\n", prixBase);
+
+    if (poids > 100)
     {
-        multiplier = poids / 100;
+        multiplier = poids / 100.00;
+        printf("Multiplier : %lf\n", multiplier);
         prixBase = prixBase * multiplier;
     }
+    else
+    {
+        multiplier = 1;
+    }
+
+    printf("Prix base : %lf\n", prixBase);
 
 
     return prixBase;
