@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-double tarif(int zoneMessagerie, int poids, int mode, int corse)
+double tarif(int zoneMessagerie, long poids, long mode, int corse)
 {
     int tranchePoids = 0;
     double prixBase = 0, multiplier = 0;

@@ -9,6 +9,6 @@
 #ifndef zone_h
 #define zone_h
 
-int zone(int arr, int dep, int mode);
+int zone(long arr, long dep, long mode);
 
 #endif /* zone_h */

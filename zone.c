@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int zone(int arr, int dep, int mode)
+int zone(long arr, long dep, long mode)
 {
     int zoneMessagerie = 0;
     // Recalibrage departement depart

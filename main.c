@@ -10,15 +10,25 @@
 #include <stdlib.h>
 #include "zone.h"
 #include "tarif.h"
+#include "ecriture.h"
 
 int main(int argc, const char * argv[])
 {
     // Definition du mode
-    int mode = 1, run = 1, corse = 0;
+    int corse = 0;
+    char run[1];
+    char mode[1];
+    long conv_run = 0;
+    long conv_mode = 0;
     // Definition de la zone
-    int arr = 0, dep = 0, zoneMessagerie = 0;
+    int zoneMessagerie = 0;
+    char arr[2];
+    char dep[2];
+    long conv_arr = 0;
+    long conv_dep = 0;
     // Definition du poids
-    int poids = 0;
+    char poids[3];
+    long conv_poids = 0;
     //Definition du tarif
     const double tgo = 1.13;
     int div = 0;
@@ -36,14 +46,15 @@ do
     printf("-------------------------------------------------------\n");
 
     printf("\nMode de transport : ");
-    scanf("%d", &mode);
+    conv_mode = lire(mode, 2);
 
     printf("Departement de depart : ");
-    scanf("%d", &dep);
-    printf("Departement de d'arrive : ");
-    scanf("%d", &arr);
+    conv_dep = lire(dep, 3);
     
-    if (dep == 20 || arr == 20)
+    printf("Departement de d'arrive : ");
+    conv_arr = lire(arr, 3);
+    
+    if (conv_dep == 20 || conv_arr == 20)
     {
         corse = 1;
     }
@@ -52,21 +63,21 @@ do
         corse = 0;
     }
 
-    zoneMessagerie = zone(arr, dep, mode);
+    zoneMessagerie = zone(conv_arr, conv_dep, conv_mode);
 
     printf("Poids total : ");
-    scanf("%d", &poids);
+    conv_poids = lire(poids, 3);
     
     printf("Zone : %d", zoneMessagerie);
 
-    if (mode)
+    if (conv_mode)
     {
-    prixBase = tarif(zoneMessagerie, poids, mode, corse);
+    prixBase = tarif(zoneMessagerie, conv_poids, conv_mode, corse);
     prixReel = (prixBase * tgo) + 0.99 + 2;
     }
     else
     {
-    prixBase = tarif(zoneMessagerie, poids, mode, corse);
+    prixBase = tarif(zoneMessagerie, conv_poids, conv_mode, corse);
     prixReel = (prixBase * tgo) + 0.99 + 2 + 9;
     }
 
@@ -97,9 +108,9 @@ do
     printf("Marge : %.0lf%%\n\n", marge);
 
     printf("Voulez-vous continuer ? 1 -> OUI 0 -> NON : ");
-    scanf("%d", &run);
+    conv_run = lire(run, 2);
     printf("\n\n\n\n\n");
-} while (run);
+} while (conv_run);
 
     return 0;
 }
