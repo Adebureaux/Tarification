@@ -16,18 +16,18 @@ int main(int argc, const char * argv[])
 {
     // Definition du mode
     int corse = 0;
-    char run[1];
-    char mode[1];
+    char run[2];
+    char mode[2];
     long conv_run = 0;
     long conv_mode = 0;
     // Definition de la zone
     int zoneMessagerie = 0;
-    char arr[2];
-    char dep[2];
+    char arr[3];
+    char dep[3];
     long conv_arr = 0;
     long conv_dep = 0;
     // Definition du poids
-    char poids[3];
+    char poids[4];
     long conv_poids = 0;
     //Definition du tarif
     const double tgo = 1.13;
@@ -50,10 +50,10 @@ do
 
     printf("Departement de depart : ");
     conv_dep = lire(dep, 3);
-    
+
     printf("Departement de d'arrive : ");
     conv_arr = lire(arr, 3);
-    
+
     if (conv_dep == 20 || conv_arr == 20)
     {
         corse = 1;
@@ -66,8 +66,8 @@ do
     zoneMessagerie = zone(conv_arr, conv_dep, conv_mode);
 
     printf("Poids total : ");
-    conv_poids = lire(poids, 3);
-    
+    conv_poids = lire(poids, 4);
+
     printf("Zone : %d", zoneMessagerie);
 
     if (conv_mode)
@@ -99,10 +99,10 @@ do
     prixMarge = prixReel / diviseurMarge;
 
     printf("Tarif de vente HT : %.2lf Euros\n", prixMarge);
-    
+
     prixTTC = prixMarge * 1.2;
     printf("Tarif de vente TTC : %.2lf Euros\n", prixTTC);
-    
+
     // Affichage de la marge
     marge = (1 - (diviseurMarge)) * 100;
     printf("Marge : %.0lf%%\n\n", marge);
