@@ -1,5 +1,4 @@
 # Tarification
 
 This project is a simple price calculator for goods transport.
-This program works in shell, it's asks you some information about a transport from France to France and gives you a rate depending on the distance and on the weight of the package, based on Geods 
-price list.
+This program works in shell, it's asks you some informations about a transport in France and gives you a rate depending on the distance and on the weight of the package, based on Geods price list. The program is designed to write on standart output and user should write informations on standart input.
